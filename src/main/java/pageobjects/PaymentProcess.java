@@ -50,16 +50,17 @@ public class PaymentProcess {
 		PageFactory.initElements(driver, this);
 		js = (JavascriptExecutor) driver;
 		wait = new WebDriverWait(driver, 30);
+		action = new Actions(driver);
 	}
 
 	// This function is used to select the item and add the item in to cart
 	public String verify_SelectItem() throws InterruptedException {
 		category.click();
 		js.executeScript("window.scrollBy(0,900)");
-		action = new Actions(driver);
 		action.moveToElement(image).perform();
 		wait.until(ExpectedConditions.elementToBeClickable(click_View)).click();
 		wait.until(ExpectedConditions.visibilityOf(frame));
+		if(!frame.isDisplayed()) {wait.until(ExpectedConditions.elementToBeClickable(click_View)).click();}
 		driver.switchTo().frame(frame);
 		wait.until(ExpectedConditions.visibilityOf(add_Qty)).click();
 		addtoCart.click();
@@ -69,19 +70,13 @@ public class PaymentProcess {
 	// This function is used to do the checkout and payment process
 	public String verify_checkOutandPaymentProcess() {
 		proceed_Checkout.click();
-		js.executeScript("window.scrollBy(0,900)");
 		String actual_shoppingCartsummary_TotalCost = shoppingCart_summaryTotalCost.getText();
 		wait.until(ExpectedConditions.visibilityOf(summary_proceedCheckout)).click();
-		js.executeScript("window.scrollBy(0,900)");
 		wait.until(ExpectedConditions.visibilityOf(address_proceedCheckout)).click();
-		js.executeScript("window.scrollBy(0,900)");
 		termsof_Service.click();
 		shipping_proceedCheckout.click();
-		js.executeScript("window.scrollBy(0,900)");
 		payment_method.click();
-		js.executeScript("window.scrollBy(0,700)");
 		confirm_order.click();
-		js.executeScript("window.scrollBy(0,500)");
 		actual_orderConfirm_TotalCost = orderConfirm_totalCost.getText();
 		LOGGER.info(actual_orderConfirm_TotalCost);
 		if (actual_orderConfirm_TotalCost.equals(actual_shoppingCartsummary_TotalCost)) {
@@ -98,7 +93,6 @@ public class PaymentProcess {
 		js.executeScript("window.scrollBy(0,-400)");
 		account.click();
 		order_History.click();
-		js.executeScript("window.scrollBy(0,300)");
 		String actual_orderHistory_amountOfOrder = wait.until(ExpectedConditions.visibilityOf(orderHistory_amountOfOrder)).getText();
 		if (actual_orderHistory_amountOfOrder.equals(actual_orderConfirm_TotalCost)) {
 			LOGGER.info("Correct amount of order is displaying under Profile page:-Order History");

@@ -2,7 +2,6 @@ package pageobjects;
 
 import java.io.IOException;
 import java.util.Properties;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,9 +16,8 @@ public class CreateAccount {
 	Properties prop;
 	WebDriverWait wait;
 	Select dropdown;
-	JavascriptExecutor js;
-    
-	// xpath
+	
+    // xpath
 	@FindBy(xpath ="//a[@class='login']") WebElement signIn;
 	@FindBy(xpath="//input[@id='email_create']") WebElement element_emailAddress;
 	@FindBy(xpath="//form[@id='create-account_form']//span[1]") WebElement element_createAccount;
@@ -42,7 +40,6 @@ public class CreateAccount {
 	// Constructor
 	public CreateAccount(WebDriver driver) throws IOException {
 		this.driver = driver;
-		js = (JavascriptExecutor) driver;
 		prop = Common.get_PropertiesFilesData();
 		PageFactory.initElements(driver, this);
 		wait = new WebDriverWait(driver, 30);
@@ -53,17 +50,14 @@ public class CreateAccount {
 	public String verify_createUserAccount() throws InterruptedException, IOException {
 		signIn.click();
 		element_emailAddress.sendKeys(prop.getProperty("email"));
-		js.executeScript("window.scrollBy(0,300)");
 		element_createAccount.click();
 		wait.until(ExpectedConditions.visibilityOf(element_title)).click();
 		element_firstName.sendKeys(prop.getProperty("firstName"));
 		element_lastName.sendKeys(prop.getProperty("lastName"));
 		element_password.sendKeys(Common.getPassword_AfterDecode());
-		js.executeScript("window.scrollBy(0,800)");
 		Common.selectdropdownByValue(day, "17");
 		Common.selectdropdownByValue(months, "7");
 		Common.selectdropdownByValue(years, "1989");
-		js.executeScript("window.scrollBy(0,800)");
 		address.sendKeys(prop.getProperty("address"));
 		element_city.sendKeys(prop.getProperty("city"));
 		Common.selectdropdownByVisibleText(element_state, "Indiana");
