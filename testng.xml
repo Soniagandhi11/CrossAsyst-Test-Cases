@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<suite name="CrossAsyst-Project" verbose="2">
+
+
+ <test enabled="true" name="CrossAsyst-Project test cases" preserve-order="true">
+	<classes>
+	
+		<class name="sampleTests.TestCases">
+			<methods>
+				<include name="signUp" />
+				<include name="signOut" />
+				<include name="signIn" />
+				<include name="selectProduct"/>
+				<include name="checkoutandPaymentProcess"/>
+				<include name="checkamountoforder_OrderHistory"/>
+
+			</methods>
+			
+		</class>
+		
+		
+	</classes>
+			
+ </test>
+
+   
+ </suite>
+  

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="2" name="Failed suite [CrossAsyst-Project]">
+  <test thread-count="5" verbose="2" name="CrossAsyst-Project test cases(failed)">
+    <classes>
+      <class name="sampleTests.TestCases">
+        <methods>
+          <include name="checkamountoforder_OrderHistory"/>
+          <include name="signIn"/>
+          <include name="checkoutandPaymentProcess"/>
+          <include name="selectProduct"/>
+          <include name="signUp"/>
+          <include name="close"/>
+          <include name="signOut"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- sampleTests.TestCases -->
+    </classes>
+  </test> <!-- CrossAsyst-Project test cases(failed) -->
+</suite> <!-- Failed suite [CrossAsyst-Project] -->
